@@ -1,6 +1,5 @@
 class MapQuestService
   def self.query_location_data(location)
-    require "pry";binding.pry 
     get_json("/geocoding/v1/address?location=#{location}")
   end
 
