@@ -5,7 +5,7 @@ module Api
         user = User.new(user_params)
         user.api_key = SecureRandom.uuid
         user.save
-        render json: UsersSerializer.new(user)
+        render json: UsersSerializer.new(user), status: :created
       end
 
       private

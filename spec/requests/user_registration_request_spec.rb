@@ -18,6 +18,8 @@ describe 'User Registration Endpoint' do
     expect(User.all.last.email).to eq(body_data[:email])
     result = JSON.parse(response.body, symbolize_names: true)
 
+    expect(response.status).to eq(201)
+
     expect(result).to have_key(:data)
     expect(result[:data]).to have_key(:id)
     expect(result[:data][:id]).to be_a(String)
