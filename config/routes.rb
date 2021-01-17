@@ -5,6 +5,7 @@ Rails.application.routes.draw do
       resources :forecast, only: :index
       get '/backgrounds', to: 'backgrounds#search'
       resources :users, only: :create 
+      resources :session, only: :create
     end
   end
 end
