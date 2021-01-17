@@ -19,6 +19,8 @@ describe 'Image Endpoint Search' do
     expect(result[:data][:attributes][:image][:image_url]).to be_a(String)
     expect(result[:data][:attributes][:image]).to have_key(:location)
     expect(result[:data][:attributes][:image][:location]).to be_a(String)
+    expect(result[:data][:attributes][:image]).to have_key(:description)
+    expect(result[:data][:attributes][:image][:description]).to be_a(String)
     expect(result[:data][:attributes]).to have_key(:credits)
     expect(result[:data][:attributes][:credits]).to be_a(Hash)
     expect(result[:data][:attributes][:credits]).to have_key(:source)
