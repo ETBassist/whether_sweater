@@ -1,9 +1,13 @@
 class Forecast
   attr_reader :current_weather,
               :hourly_weather,
-              :daily_weather
+              :daily_weather,
+              :id,
+              :type
 
   def initialize(data)
+    @id = nil
+    @type = 'forecast'
     @current_weather = create_current_weather(data)
     @hourly_weather = create_hourly_weather(data)
     @daily_weather = create_daily_weather(data)
@@ -13,11 +17,11 @@ class Forecast
 
   def create_current_weather(data)
     { 
-      datetime: Time.at(data[:current][:dt]),
-      sunrise: Time.at(data[:current][:sunrise]),
-      sunset: Time.at(data[:current][:sunset]),
+      datetime: Time.at(data[:current][:dt]).to_s,
+      sunrise: Time.at(data[:current][:sunrise]).to_s,
+      sunset: Time.at(data[:current][:sunset]).to_s,
       temperature: data[:current][:temp],
-      feels_like: data[:current][:feels_like],
+      feels_like: data[:current][:feels_like].to_f,
       humidity: data[:current][:humidity],
       uvi: data[:current][:uvi],
       visibility: data[:current][:visibility],
@@ -31,7 +35,7 @@ class Forecast
     {
       time: Time.at(hour[:dt]).strftime("%k:%M:%S"),
       temperature: hour[:temp],
-      wind_speed: hour[:wind_speed],
+      wind_speed: "#{hour[:wind_speed]} mph",
       wind_direction: calculate_direction(hour[:wind_deg]),
       conditions: hour[:weather][0][:description],
       icon: hour[:weather][0][:icon]
@@ -43,10 +47,10 @@ class Forecast
     data[:daily][0..4].map do |day|
       {
         date: Time.at(day[:dt]).strftime("%Y-%m-%d"),
-        sunrise: Time.at(day[:sunrise]),
-        sunset: Time.at(day[:sunset]),
-        max_temp: day[:temp][:max],
-        min_temp: day[:temp][:min],
+        sunrise: Time.at(day[:sunrise]).to_s,
+        sunset: Time.at(day[:sunset]).to_s,
+        max_temp: day[:temp][:max].to_f,
+        min_temp: day[:temp][:min].to_f,
         conditions: day[:weather][0][:description],
         icon: day[:weather][0][:icon]
       }

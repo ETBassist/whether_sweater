@@ -6,7 +6,8 @@ describe '/api/v1/forecast?location=denver,co', :vcr do
       VCR.use_cassette('open_weather_request_full_spec') do
         get '/api/v1/forecast?location=washington,dc'
 
-        result = JSON.parse(response.body, sybolize_names: true)
+        result = JSON.parse(response.body, symbolize_names: true)
+        require "pry";binding.pry 
 
         expect(result).to have_key(:data)
         expect(result[:data]).to have_key(:id)
