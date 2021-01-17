@@ -3,7 +3,7 @@ module Api
     class UsersController < ApplicationController
       def create
         user = User.new(user_params)
-        user.api_key = SecureRandom.base64
+        user.api_key = SecureRandom.uuid
         user.save
         render json: UsersSerializer.new(user)
       end
