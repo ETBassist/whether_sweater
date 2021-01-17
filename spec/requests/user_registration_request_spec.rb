@@ -15,6 +15,7 @@ describe 'User Registration Endpoint' do
 
     post '/api/v1/users', params: { headers: header_data, body: body_data }
 
+    expect(User.all.last.email).to eq(body_data[:email])
     result = JSON.parse(response.body, symbolize_names: true)
 
     expect(result).to have_key(:data)
@@ -27,5 +28,8 @@ describe 'User Registration Endpoint' do
     expect(result[:data][:attributes][:email]).to eq(body_data[:email])
     expect(result[:data][:attributes]).to have_key(:api_key)
     expect(result[:data][:attributes][:api_key]).to be_a(String)
+
   end
+
+  #TODO: add sad path testing for incorrect input
 end
