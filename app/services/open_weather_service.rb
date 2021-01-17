@@ -1,9 +1,9 @@
 class OpenWeatherService
   def self.get_forecast(lat, lng)
-    get_json("/data/2.5/onecall?lat=#{lat}&lon=#{lng}&exlude=minutely")
+    get_json("/data/2.5/onecall?lat=#{lat}&lon=#{lng}&exclude=minutely")
   end
 
-  module Connectable
+  module WeatherConnectable
     private
 
     def get_json(uri)
@@ -18,6 +18,6 @@ class OpenWeatherService
     end
   end
 
-  extend Connectable
+  extend WeatherConnectable
 end
 
