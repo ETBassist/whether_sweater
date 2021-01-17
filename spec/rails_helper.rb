@@ -61,6 +61,7 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
+  config.include FactoryBot::Syntax::Methods
 end
 
 VCR.configure do |config|
@@ -70,4 +71,11 @@ VCR.configure do |config|
   config.filter_sensitive_data('<QUIT_IT>') { ENV['OPEN_WEATHER_KEY'] }
   config.filter_sensitive_data('<DONT_EXPOSE_MY_DATA_PLEASE>') { ENV['UNSPLASH_KEY'] }
   config.allow_http_connections_when_no_cassette = true
+end
+
+Shoulda::Matchers.configure do |config|
+  config.integrate do |with|
+    with.test_framework :rspec
+    with.library :rails
+  end
 end
