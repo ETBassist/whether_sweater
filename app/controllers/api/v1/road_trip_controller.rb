@@ -12,7 +12,6 @@ module Api
           forecast = weather[:hourly].find do |hour|
             Time.at(hour[:dt]).strftime("%H") == arrival_hour
           end
-          require "pry";binding.pry 
           #TODO: create RoadTrip PORO and facade
           # call the above facades from within there
         end
