@@ -33,4 +33,18 @@ describe 'Road Trip POST request' do
     expect(result[:data][:attributes][:weather_at_eta]).to have_key(:conditions)
     expect(result[:data][:attributes][:weather_at_eta][:conditions]).to be_a(String)
   end
+
+  it 'returns an error if an incorrect API key is given' do
+    body_data = {
+      origin: 'Denver,CO',
+      destination: 'Pueblo,CO',
+      api_key: 'not a correct api key'
+    }
+
+    post '/api/v1/road_trip', params: body_data
+
+    result = JSON.parse(response.body, symbolize_names: true)
+
+    expect(result).to eq('Invalid API Key')
+  end
 end
