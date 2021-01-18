@@ -8,12 +8,7 @@ describe 'User Registration Endpoint' do
       password_confirmation: "password"
     }
 
-    header_data = {
-      'Content-Type': 'application/json',
-      'Accept': 'application/json'
-    }
-
-    post '/api/v1/users', params: { headers: header_data, body: body_data }
+    post '/api/v1/users', params: body_data
 
     expect(User.all.last.email).to eq(body_data[:email])
     result = JSON.parse(response.body, symbolize_names: true)
@@ -40,12 +35,7 @@ describe 'User Registration Endpoint' do
       password_confirmation: "not the same password"
     }
 
-    header_data = {
-      'Content-Type': 'application/json',
-      'Accept': 'application/json'
-    }
-
-    post '/api/v1/users', params: { headers: header_data, body: body_data }
+    post '/api/v1/users', params: body_data
 
     expect(response.status).to eq(400)
 
