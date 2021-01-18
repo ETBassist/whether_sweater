@@ -33,7 +33,6 @@ describe 'User Registration Endpoint' do
 
   end
 
-  #TODO: add sad path testing for incorrect input
   it 'will respond with an error with invalid input' do
     body_data = { 
       email: "somebody@example.com",
