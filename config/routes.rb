@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       get '/backgrounds', to: 'backgrounds#search'
       resources :users, only: :create 
       resources :session, only: :create
+      resources :road_trip, only: :create
     end
   end
 end

@@ -18,6 +18,8 @@ describe 'User Registration Endpoint' do
     expect(User.all.last.email).to eq(body_data[:email])
     result = JSON.parse(response.body, symbolize_names: true)
 
+    expect(response.status).to eq(201)
+
     expect(result).to have_key(:data)
     expect(result[:data]).to have_key(:id)
     expect(result[:data][:id]).to be_a(String)
@@ -31,5 +33,22 @@ describe 'User Registration Endpoint' do
 
   end
 
-  #TODO: add sad path testing for incorrect input
+  it 'will respond with an error with invalid input' do
+    body_data = { 
+      email: "somebody@example.com",
+      password: "password",
+      password_confirmation: "not the same password"
+    }
+
+    header_data = {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    }
+
+    post '/api/v1/users', params: { headers: header_data, body: body_data }
+
+    expect(response.status).to eq(400)
+
+    expect(response.body).to eq("Password confirmation doesn't match Password")
+  end
 end

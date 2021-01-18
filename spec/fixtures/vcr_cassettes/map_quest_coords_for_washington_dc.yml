@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: http://www.mapquestapi.com/geocoding/v1/address?key=wM5WNdOgPkqPrlqScGLHfEpXi3VZV5iN&location=washington,dc
+    uri: http://www.mapquestapi.com/geocoding/v1/address?key=<WHY_ARE_YOU_LOOKING_AT_THIS>&location=washington,dc
     body:
       encoding: US-ASCII
       string: ''
@@ -19,11 +19,11 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Sun, 17 Jan 2021 00:04:36 GMT
+      - Mon, 18 Jan 2021 19:15:04 GMT
       Content-Type:
       - application/json;charset=UTF-8
       Content-Length:
-      - '1044'
+      - '1045'
       Access-Control-Allow-Methods:
       - OPTIONS,GET,POST
       Access-Control-Allow-Origin:
@@ -35,7 +35,7 @@ http_interactions:
       Geocodetransactioncount:
       - '1'
       Last-Modified:
-      - Sun, 17 Jan 2021 00:04:36 GMT
+      - Mon, 18 Jan 2021 19:15:04 GMT
       Pragma:
       - no-cache
       Reversegeocodetransactioncount:
@@ -43,7 +43,7 @@ http_interactions:
       Server:
       - Apache-Coyote/1.1
       Set-Cookie:
-      - JSESSIONID=EC98BE127135E76A7FCE3366E33DB0FF; Path=/; HttpOnly
+      - JSESSIONID=76208365A67576B62FD5534FEFDD2F6E; Path=/; HttpOnly
       Status:
       - success
       Transactionweight:
@@ -53,6 +53,6 @@ http_interactions:
       string: '{"info":{"statuscode":0,"copyright":{"text":"\u00A9 2021 MapQuest,
         Inc.","imageUrl":"http://api.mqcdn.com/res/mqlogo.gif","imageAltText":"\u00A9
         2021 MapQuest, Inc."},"messages":[]},"options":{"maxResults":-1,"thumbMaps":true,"ignoreLatLngInput":false},"results":[{"providedLocation":{"location":"washington,dc"},"locations":[{"street":"","adminArea6":"","adminArea6Type":"Neighborhood","adminArea5":"Washington","adminArea5Type":"City","adminArea4":"District
-        of Columbia","adminArea4Type":"County","adminArea3":"DC","adminArea3Type":"State","adminArea1":"US","adminArea1Type":"Country","postalCode":"","geocodeQualityCode":"A5XAX","geocodeQuality":"CITY","dragPoint":false,"sideOfStreet":"N","linkId":"282772166","unknownInput":"","type":"s","latLng":{"lat":38.892062,"lng":-77.019912},"displayLatLng":{"lat":38.892062,"lng":-77.019912},"mapUrl":"http://www.mapquestapi.com/staticmap/v5/map?key=wM5WNdOgPkqPrlqScGLHfEpXi3VZV5iN&type=map&size=225,160&locations=38.892062,-77.019912|marker-sm-50318A-1&scalebar=true&zoom=12&rand=1940997442"}]}]}'
-  recorded_at: Sun, 17 Jan 2021 00:04:36 GMT
+        of Columbia","adminArea4Type":"County","adminArea3":"DC","adminArea3Type":"State","adminArea1":"US","adminArea1Type":"Country","postalCode":"","geocodeQualityCode":"A5XAX","geocodeQuality":"CITY","dragPoint":false,"sideOfStreet":"N","linkId":"282772166","unknownInput":"","type":"s","latLng":{"lat":38.892062,"lng":-77.019912},"displayLatLng":{"lat":38.892062,"lng":-77.019912},"mapUrl":"http://www.mapquestapi.com/staticmap/v5/map?key=<WHY_ARE_YOU_LOOKING_AT_THIS>&type=map&size=225,160&locations=38.892062,-77.019912|marker-sm-50318A-1&scalebar=true&zoom=12&rand=-1991756876"}]}]}'
+  recorded_at: Mon, 18 Jan 2021 19:15:04 GMT
 recorded_with: VCR 6.0.0

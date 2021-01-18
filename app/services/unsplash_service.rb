@@ -1,9 +1,9 @@
 class UnsplashService
-  def self.city_image_search(city)
-    get_json("/search/photos?query=city of #{city}")
-  end
+  class << self
+    def city_image_search(city)
+      get_json("/search/photos?query=city of #{city}")
+    end
 
-  module UnsplashConnectable
     private
 
     def get_json(uri)
@@ -21,6 +21,4 @@ class UnsplashService
       ) 
     end
   end
-  extend UnsplashConnectable
 end
-

@@ -3,9 +3,12 @@ module Api
     class UsersController < ApplicationController
       def create
         user = User.new(user_params)
-        user.api_key = SecureRandom.base64
-        user.save
-        render json: UsersSerializer.new(user)
+        user.api_key = SecureRandom.uuid
+        if user.save
+          render json: UsersSerializer.new(user), status: :created
+        else
+          render status: :bad_request, body: user.errors.full_messages.to_sentence
+        end
       end
 
       private
