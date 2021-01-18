@@ -19,7 +19,7 @@ describe 'Road Trip POST request' do
 
     post '/api/v1/road_trip', params: { headers: header_data, body: body_data }
 
-    result = JSON.parse(response.body)
+    result = JSON.parse(response.body, symbolize_names: true)
 
     expect(result).to have_key(:data)
     expect(result[:data]).to have_key(:id)
