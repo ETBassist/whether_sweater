@@ -1,7 +1,7 @@
 class OpenWeatherService
   class << self
     def get_forecast(lat, lng)
-      get_json("/data/2.5/onecall?lat=#{lat}&lon=#{lng}&exclude=minutely")
+      get_json("/data/2.5/onecall?lat=#{lat}&lon=#{lng}&exclude=minutely&units=imperial")
     end
 
     private
