@@ -10,6 +10,6 @@ class TripTime
   private
 
   def format_time(time)
-    "#{ time / 3600 }h#{ (time % 3600) / 60 }m"
+    time ? "#{ time / 3600 }h#{ (time % 3600) / 60 }m" : 'impossible'
   end
 end
