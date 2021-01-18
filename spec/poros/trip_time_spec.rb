@@ -50,5 +50,6 @@ describe 'Trip Time PORO' do
     time = TripTime.new(data)
 
     expect(time.travel_time).to eq('impossible')
+    expect(time.time_in_seconds).to eq(nil)
   end
 end
