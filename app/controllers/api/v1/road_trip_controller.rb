@@ -6,6 +6,8 @@ module Api
         if user
           roadtrip = RoadTripFacade.create_road_trip(params)
           render json: RoadTripSerializer.new(roadtrip)
+        else
+          render status: :unauthorized, body: 'Invalid API Key'
         end
       end
     end

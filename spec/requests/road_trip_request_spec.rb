@@ -43,8 +43,35 @@ describe 'Road Trip POST request' do
 
     post '/api/v1/road_trip', params: body_data
 
+
+    expect(response.status).to eq(401)
+    expect(response.body).to eq('Invalid API Key')
+  end
+
+  it 'returns no weather data and a travel_time of impossible if a trip is not possible' do
+    body_data = {
+      origin: 'San Francisco,CA',
+      destination: 'London,UK',
+      api_key: @user.api_key
+    }
+
+    post '/api/v1/road_trip', params: body_data
+
     result = JSON.parse(response.body, symbolize_names: true)
 
-    expect(result).to eq('Invalid API Key')
+    expect(result).to have_key(:data)
+    expect(result[:data]).to have_key(:id)
+    expect(result[:data][:id]).to eq(nil)
+    expect(result[:data]).to have_key(:type)
+    expect(result[:data][:type]).to eq('roadtrip')
+    expect(result[:data]).to have_key(:attributes)
+    expect(result[:data][:attributes]).to have_key(:start_city)
+    expect(result[:data][:attributes]).to have_key(:end_city)
+    expect(result[:data][:attributes]).to have_key(:travel_time)
+    expect(result[:data][:attributes][:travel_time]).to eq('impossible')
+    expect(result[:data][:attributes]).to have_key(:weather_at_eta)
+    expect(result[:data][:attributes][:weather_at_eta]).to be_a(Hash)
+    expect(result[:data][:attributes][:weather_at_eta]).to_not have_key(:temperature)
+    expect(result[:data][:attributes][:weather_at_eta]).to_not have_key(:conditions)
   end
 end
