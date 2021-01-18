@@ -6,17 +6,12 @@ describe 'User Log In request' do
   end
 
   it 'can log a user in with valid credentials' do
-    header_data = {
-      'Content-Type': 'application/json',
-      'Accept': 'application/json'
-    }
-
     body_data = {
       email: @user.email,
       password: @user.password
     }
 
-    post '/api/v1/session', params: { headers: header_data, body: body_data }
+    post '/api/v1/session', params: body_data
 
     result = JSON.parse(response.body, symbolize_names: true)
 
@@ -34,17 +29,12 @@ describe 'User Log In request' do
   end
   
   it 'is not case-sensitive for emails' do
-    header_data = {
-      'Content-Type': 'application/json',
-      'Accept': 'application/json'
-    }
-
     body_data = {
       email: @user.email.upcase,
       password: @user.password
     }
 
-    post '/api/v1/session', params: { headers: header_data, body: body_data }
+    post '/api/v1/session', params: body_data
 
     result = JSON.parse(response.body, symbolize_names: true)
 
@@ -62,17 +52,12 @@ describe 'User Log In request' do
   end
 
   it 'returns an error if password is incorrect' do
-    header_data = {
-      'Content-Type': 'application/json',
-      'Accept': 'application/json'
-    }
-
     body_data = {
       email: @user.email,
       password: 'the wrong password'
     }
 
-    post '/api/v1/session', params: { headers: header_data, body: body_data }
+    post '/api/v1/session', params: body_data
 
     expect(response.status).to eq(400)
 
@@ -80,17 +65,12 @@ describe 'User Log In request' do
   end
 
   it 'returns an error if email is incorrect' do
-    header_data = {
-      'Content-Type': 'application/json',
-      'Accept': 'application/json'
-    }
-
     body_data = {
       email: "#{@user.email} and some nonsese",
       password: @user.password
     }
 
-    post '/api/v1/session', params: { headers: header_data, body: body_data }
+    post '/api/v1/session', params: body_data
 
     expect(response.status).to eq(400)
 

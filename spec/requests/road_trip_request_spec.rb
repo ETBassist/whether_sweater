@@ -6,18 +6,13 @@ describe 'Road Trip POST request' do
   end
 
   it 'returns details for a road trip including weather forecast' do
-    header_data = {
-      'Content-Type': 'application/json',
-      'Accept': 'application/json'
-    }
-
     body_data = {
       origin: 'Denver,CO',
       destination: 'Pueblo,CO',
       api_key: @user.api_key
     }
 
-    post '/api/v1/road_trip', params: { headers: header_data, body: body_data }
+    post '/api/v1/road_trip', params: body_data 
 
     result = JSON.parse(response.body, symbolize_names: true)
 
