@@ -34,4 +34,22 @@ describe 'User Registration Endpoint' do
   end
 
   #TODO: add sad path testing for incorrect input
+  it 'will respond with an error with invalid input' do
+    body_data = { 
+      email: "somebody@example.com",
+      password: "password",
+      password_confirmation: "not the same password"
+    }
+
+    header_data = {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    }
+
+    post '/api/v1/users', params: { headers: header_data, body: body_data }
+
+    expect(response.status).to eq(400)
+
+    expect(response.body).to eq("Password confirmation doesn't match Password")
+  end
 end

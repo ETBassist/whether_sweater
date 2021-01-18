@@ -4,8 +4,11 @@ module Api
       def create
         user = User.new(user_params)
         user.api_key = SecureRandom.uuid
-        user.save
-        render json: UsersSerializer.new(user), status: :created
+        if user.save
+          render json: UsersSerializer.new(user), status: :created
+        else
+          render status: :bad_request, body: user.errors.full_messages.to_sentence
+        end
       end
 
       private
