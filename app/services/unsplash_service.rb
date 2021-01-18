@@ -1,6 +1,6 @@
 class UnsplashService
   class << self
-    def self.city_image_search(city)
+    def city_image_search(city)
       get_json("/search/photos?query=city of #{city}")
     end
 
