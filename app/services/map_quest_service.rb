@@ -1,9 +1,9 @@
 class MapQuestService
-  def self.query_location_data(location)
-    get_json("/geocoding/v1/address?location=#{location}")
-  end
+  class << self
+    def query_location_data(location)
+      get_json("/geocoding/v1/address?location=#{location}")
+    end
 
-  module Connectable
     private
 
     def get_json(uri)
@@ -17,7 +17,5 @@ class MapQuestService
       end
     end
   end
-
-  extend Connectable
 end
 
