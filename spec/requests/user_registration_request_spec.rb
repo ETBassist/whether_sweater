@@ -8,7 +8,12 @@ describe 'User Registration Endpoint' do
       password_confirmation: "password"
     }
 
-    post '/api/v1/users', params: body_data
+    headers = {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    }
+
+    post '/api/v1/users', headers: headers, params: JSON.generate(body_data)
 
     expect(User.all.last.email).to eq(body_data[:email])
     result = JSON.parse(response.body, symbolize_names: true)

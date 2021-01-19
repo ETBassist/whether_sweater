@@ -11,7 +11,12 @@ describe 'User Log In request' do
       password: @user.password
     }
 
-    post '/api/v1/session', params: body_data
+    headers = {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    }
+
+    post '/api/v1/session', headers: headers, params: JSON.generate(body_data)
 
     result = JSON.parse(response.body, symbolize_names: true)
 
