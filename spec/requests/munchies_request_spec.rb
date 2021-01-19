@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe 'Munchies Request endpoint' do
   it 'should return a response with forecast and restaurant info' do
-    get '/api/v1/munchies?start=denver,co&end=pueblo,co&food=chinese'
+    get '/api/v1/munchies?start=denver,co&destination=pueblo,co&food=chinese'
 
     result = JSON.parse(response.body, symbolize_names: true)
 

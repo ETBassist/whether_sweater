@@ -70,6 +70,7 @@ VCR.configure do |config|
   config.filter_sensitive_data('<WHY_ARE_YOU_LOOKING_AT_THIS>') { ENV['MAPQUEST_KEY'] }
   config.filter_sensitive_data('<QUIT_IT>') { ENV['OPEN_WEATHER_KEY'] }
   config.filter_sensitive_data('<DONT_EXPOSE_MY_DATA_PLEASE>') { ENV['UNSPLASH_KEY'] }
+  config.filter_sensitive_data('<NOPE_NOT_THIS_ONE_EITHER>') { ENV['YELP_KEY'] }
   config.allow_http_connections_when_no_cassette = true
 end
 

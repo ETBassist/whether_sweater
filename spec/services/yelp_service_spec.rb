@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe 'Yelp Service Object' do
   it 'returns a response with restaurant info for specified location' do
-    time = TripTime.new(9001)
+    time = 1611074218
     result = YelpService.query_business_search('pueblo,co', 'chinese', time)
     expect(result).to have_key(:businesses)
     expect(result[:businesses]).to be_a(Array)
