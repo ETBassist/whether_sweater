@@ -34,7 +34,7 @@ describe 'Current PORO' do
     expect(current_weather.sunset).to eq('2021-01-18 14:13:07 -0800')
     expect(current_weather.temperature).to eq(43.86)
     expect(current_weather.feels_like).to eq(31.44)
-    expect(current_weather.humiditiy).to eq(33)
+    expect(current_weather.humidity).to eq(33)
     expect(current_weather.uvi).to eq(1.03)
     expect(current_weather.visibility).to eq(10_000)
     expect(current_weather.conditions).to eq('broken clouds')
