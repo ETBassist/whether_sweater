@@ -17,15 +17,23 @@ describe '/api/v1/forecast?location=denver,co', :vcr do
 
         expect(result[:data][:attributes]).to have_key(:current_weather)
         expect(result[:data][:attributes][:current_weather]).to have_key(:datetime)
+        expect(result[:data][:attributes][:current_weather][:datetime]).to be_a(String)
         expect(result[:data][:attributes][:current_weather]).to have_key(:sunrise)
+        expect(result[:data][:attributes][:current_weather][:sunrise]).to be_a(String)
         expect(result[:data][:attributes][:current_weather]).to have_key(:sunset)
+        expect(result[:data][:attributes][:current_weather][:sunset]).to be_a(String)
         expect(result[:data][:attributes][:current_weather]).to have_key(:temperature)
+        expect(result[:data][:attributes][:current_weather][:temperature]).to be_a(Numeric)
         expect(result[:data][:attributes][:current_weather]).to have_key(:feels_like)
         expect(result[:data][:attributes][:current_weather][:feels_like]).to be_a(Float)
         expect(result[:data][:attributes][:current_weather]).to have_key(:humidity)
+        expect(result[:data][:attributes][:current_weather][:humidity]).to be_a(Numeric)
         expect(result[:data][:attributes][:current_weather]).to have_key(:uvi)
+        expect(result[:data][:attributes][:current_weather][:uvi]).to be_a(Numeric)
         expect(result[:data][:attributes][:current_weather]).to have_key(:visibility)
+        expect(result[:data][:attributes][:current_weather][:visibility]).to be_a(Numeric)
         expect(result[:data][:attributes][:current_weather]).to have_key(:conditions)
+        expect(result[:data][:attributes][:current_weather][:conditions]).to be_a(String)
         expect(result[:data][:attributes][:current_weather]).to have_key(:icon)
         expect(result[:data][:attributes][:current_weather][:icon]).to be_a(String)
 
@@ -35,13 +43,17 @@ describe '/api/v1/forecast?location=denver,co', :vcr do
         
         result[:data][:attributes][:daily_weather].each do |day|
           expect(day).to have_key(:date)
+          expect(day[:date]).to be_a(String)
           expect(day).to have_key(:sunrise)
+          expect(day[:sunrise]).to be_a(String)
           expect(day).to have_key(:sunset)
+          expect(day[:sunset]).to be_a(String)
           expect(day).to have_key(:max_temp)
           expect(day[:max_temp]).to be_a(Float)
           expect(day).to have_key(:min_temp)
           expect(day[:min_temp]).to be_a(Float)
           expect(day).to have_key(:conditions)
+          expect(day[:conditions]).to be_a(String)
           expect(day).to have_key(:icon)
           expect(day[:icon]).to be_a(String)
         end
@@ -52,6 +64,7 @@ describe '/api/v1/forecast?location=denver,co', :vcr do
 
         result[:data][:attributes][:hourly_weather].each do |hour|
           expect(hour).to have_key(:time)
+          expect(hour[:time]).to be_a(String)
           expect(hour).to have_key(:temperature)
           expect(hour[:temperature]).to be_a(Float)
           expect(hour).to have_key(:wind_speed)
@@ -59,6 +72,7 @@ describe '/api/v1/forecast?location=denver,co', :vcr do
           expect(hour).to have_key(:wind_direction)
           expect(hour[:wind_direction]).to be_a(String)
           expect(hour).to have_key(:conditions)
+          expect(hour[:conditions]).to be_a(String)
           expect(hour).to have_key(:icon)
           expect(hour[:icon]).to be_a(String)
         end

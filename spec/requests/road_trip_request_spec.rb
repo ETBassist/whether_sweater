@@ -12,7 +12,12 @@ describe 'Road Trip POST request' do
       api_key: @user.api_key
     }
 
-    post '/api/v1/road_trip', params: body_data 
+    headers = {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    }
+
+    post '/api/v1/road_trip', headers: headers, params: JSON.generate(body_data)
 
     result = JSON.parse(response.body, symbolize_names: true)
 
@@ -29,7 +34,7 @@ describe 'Road Trip POST request' do
     expect(result[:data][:attributes]).to have_key(:travel_time)
     expect(result[:data][:attributes]).to have_key(:weather_at_eta)
     expect(result[:data][:attributes][:weather_at_eta]).to have_key(:temperature)
-    expect(result[:data][:attributes][:weather_at_eta][:temperature]).to be_a(Float)
+    expect(result[:data][:attributes][:weather_at_eta][:temperature]).to be_a(Numeric)
     expect(result[:data][:attributes][:weather_at_eta]).to have_key(:conditions)
     expect(result[:data][:attributes][:weather_at_eta][:conditions]).to be_a(String)
   end
