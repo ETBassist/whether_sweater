@@ -40,7 +40,7 @@ describe 'Daily PORO' do
 
     daily_weather = Daily.new(day)
 
-    expect(daily_weather.date).to eq('2021-01-18 09:00:00 -0800')
+    expect(daily_weather.date).to eq('2021-01-18')
     expect(daily_weather.sunrise).to eq('2021-01-18 04:23:40 -0800')
     expect(daily_weather.sunset).to eq('2021-01-18 14:13:07 -0800')
     expect(daily_weather.max_temp).to eq(43.86)
