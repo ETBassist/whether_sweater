@@ -27,7 +27,7 @@ describe 'Hourly Weather PORO' do
 
     hourly = Hourly.new(hour)
 
-    expect(hourly.time).to eq('2021-01-18 11:00:00 -0800')
+    expect(hourly.time).to eq('11:00:00')
     expect(hourly.temperature).to eq(43.86)
     expect(hourly.wind_speed).to eq('11.23 mph')
     expect(hourly.wind_direction).to eq('WNW')

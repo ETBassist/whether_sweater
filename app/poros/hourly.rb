@@ -7,7 +7,7 @@ class Hourly
               :icon
 
   def initialize(hour)
-    @time = Time.at(hour[:dt]).to_s
+    @time = Time.at(hour[:dt]).strftime("%k:%M:%S")
     @temperature = hour[:temp]
     @wind_speed = "#{ hour[:wind_speed] } mph"
     @wind_direction = calculate_direction(hour[:wind_deg])
