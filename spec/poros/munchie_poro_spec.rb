@@ -1,12 +1,11 @@
 require 'rails_helper'
 require './spec/fixtures/yelp_response'
+require './spec/fixtures/weather_response'
 
 describe 'Munchie PORO' do
   it 'has attributes matching expected response' do
     time = TripTime.new( {route: { realTime: 9000 } } )
-    lat = 37.7826652526855
-    lng = -122.465911865234
-    weather = OpenWeatherService.get_forecast(lat, lng)
+    weather = WeatherResponse::DATA
     munchie = Munchie.new(YelpResponse::DATA[:businesses][0], time, weather)
 
     expect(munchie.destination_city).to eq('San Francisco, CA')
