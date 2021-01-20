@@ -7,7 +7,6 @@ class Forecast
 
   def initialize(data)
     @id = nil
-    @type = 'forecast'
     @current_weather = create_current_weather(data[:current])
     @hourly_weather = create_hourly_weather(data[:hourly])
     @daily_weather = create_daily_weather(data[:daily])
