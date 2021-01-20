@@ -26,4 +26,12 @@ describe 'Image Endpoint Search' do
     expect(result[:data][:attributes]).to have_key(:author_profile)
     expect(result[:data][:attributes][:author_profile]).to be_a(String)
   end
+
+  it 'returns an error if param is missing' do
+    get '/api/v1/backgrounds'
+
+    expect(response.status).to eq(400)
+
+    expect(response.body).to eq('Missing required parameter')
+  end
 end
