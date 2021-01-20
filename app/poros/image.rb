@@ -3,7 +3,9 @@ class Image
               :description,
               :author,
               :id,
-              :type
+              :type,
+              :source,
+              :author_profile
 
 
   def initialize(data)
@@ -12,5 +14,7 @@ class Image
     @image_url = data[:urls][:raw]
     @description = data[:description]
     @author = data[:user][:name]
+    @source = 'Unsplash'
+    @author_profile = data[:user][:links][:html]
   end
 end

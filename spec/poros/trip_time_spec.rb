@@ -28,4 +28,28 @@ describe 'Trip Time PORO' do
     expect(time.travel_time).to eq('0h10m')
     expect(time.time_in_seconds).to eq(653)
   end
+
+  it 'will give impossible as travel time if trip is not possible' do
+    data = {
+      "route": {
+        "routeError": {
+          "errorCode": 2,
+          "message": ""
+        }
+      },
+      "info": {
+        "statuscode": 402,
+        "copyright": {
+          "imageAltText": "© 2020 MapQuest, Inc.",
+          "imageUrl": "http://api.mqcdn.com/res/mqlogo.gif",
+          "text": "© 2020 MapQuest, Inc."
+        },
+        "messages": [ "We are unable to route with the given locations." ]
+        }
+      }
+    time = TripTime.new(data)
+
+    expect(time.travel_time).to eq('impossible')
+    expect(time.time_in_seconds).to eq(nil)
+  end
 end
