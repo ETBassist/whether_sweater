@@ -1,5 +1,15 @@
 # README
 
+## Project Description
+Whether, Sweater?/Sweater Weather is a project built as part of the Turing
+School of Software and Design back-end curriculum. It is intended to serve as
+the back end for an application with which one can plan road trips; it allows
+users to see the current weather as well as the forecasted weather for a
+destination. 
+
+This back end API consumes and aggregates data from other APIs and returns it
+in JSON format.
+
 ## Learning Goals
   * Expose and API that aggregate data from multiple external APIs
   * Expose an API that requires an authentication token
@@ -30,7 +40,7 @@ Getting started:
 With your `rails s` running locally all of these endpoints should be prefaced
 with `localhost:3000` (the default port for the rails server)
 
-#### Background image endpoint
+### Weather Forecast for City Endpoint
 ```
 GET /api/v1/forecast?location=<city><state>
 Headers:
@@ -175,15 +185,15 @@ Note: `location` is a required parameter
     }
 }
 </code></pre>
-</details
+</details>
 
-#### Background Image For a City
-<pre><code>
+### Background Image For a City
+```
 GET /api/v1/backgrounds?location=<city><state>
 Headers:
   Content-Type: application/json
   Accept: application/json
-</code></pre>
+```
 
 Note: `location` is a required parameter
 <details>
@@ -204,7 +214,7 @@ Note: `location` is a required parameter
 </code></pre>
 </details>
 
-#### User Registration
+### User Registration
 
 ```
 POST /api/v1/users
@@ -238,7 +248,7 @@ Response:
 </details>
 API Keys are generated via Rails built-in `has_secure_token` method
 
-#### User Login
+### User Login
 ```
 POST /api/v1/sessions
 Headers:
@@ -269,7 +279,7 @@ Response:
 </code></pre>
 </details>
 
-#### Road Trip
+### Road Trip
 
 ```
 POST /api/v1/road_trip
