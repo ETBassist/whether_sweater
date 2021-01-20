@@ -27,15 +27,16 @@ Getting started:
     app of your creation.
 
 ## Endpoints
+With your `rails s` running locally all of these endpoints should be prefaced
+with `localhost:3000` (the default port for the rails server)
 ```
-GET /api/v1/forecast?location=<city><state>`
+GET /api/v1/forecast?location=<city><state>
 Headers:
   Content-Type: application/json
   Accept: application/json
 ```
 
 Note: `location` is a required parameter
-More details:
 <details>
   <pre>
     <code>
@@ -175,3 +176,12 @@ More details:
     </code>
   </pre>
 </details
+
+```
+GET /api/v1/backgrounds?location=<city><state>
+Headers:
+  Content-Type: application/json
+  Accept: application/json
+```
+
+Note: `location` is a required parameter
