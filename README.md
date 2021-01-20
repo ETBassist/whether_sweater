@@ -27,7 +27,8 @@ Prerequisites:
     will be required for each.
 
 Getting started:
-  * First, clone this repository (or your fork of it)
+  * First, clone this repository (or your fork of it) (`git clone
+    https://github.com/ETBassist/whether_sweater.git`)
   * `cd` into that repository
   * Run `bundle install` from the command line to install dependencies
   * Run `rails db:{create,migrate}` to create the database and run the tables
