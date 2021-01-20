@@ -37,7 +37,8 @@ Headers:
 Note: `location` is a required parameter
 More details:
 <details>
-```
+  <pre>
+    <code>
 {
     "data": {
         "id": null,
@@ -171,5 +172,6 @@ More details:
         }
     }
 }
-```
+    </code>
+  </pre>
 </details
