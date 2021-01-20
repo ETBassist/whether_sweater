@@ -125,4 +125,12 @@ describe '/api/v1/forecast?location=denver,co', :vcr do
       end
     end
   end
+
+  it 'should return a 400 error for missing params' do
+    get '/api/v1/forecast'
+
+    expect(response.status).to eq(400)
+
+    expect(response.body).to eq('Missing required parameter')
+  end
 end
