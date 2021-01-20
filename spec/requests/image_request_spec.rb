@@ -31,7 +31,9 @@ describe 'Image Endpoint Search' do
     get '/api/v1/backgrounds'
 
     expect(response.status).to eq(400)
+    result = JSON.parse(response.body, symbolize_names: true)
 
-    expect(response.body).to eq('Missing required parameter')
+    expect(result).to have_key(:data)
+    expect(result[:data]).to eq('Missing required parameter')
   end
 end

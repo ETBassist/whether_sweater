@@ -131,6 +131,8 @@ describe '/api/v1/forecast?location=denver,co', :vcr do
 
     expect(response.status).to eq(400)
 
-    expect(response.body).to eq('Missing required parameter')
+    result = JSON.parse(response.body, symbolize_names: true)
+    expect(result).to have_key(:data)
+    expect(result[:data]).to eq('Missing required parameter')
   end
 end
