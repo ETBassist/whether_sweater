@@ -79,4 +79,50 @@ describe '/api/v1/forecast?location=denver,co', :vcr do
       end
     end
   end
+
+  it 'should not have these attributes' do
+    VCR.use_cassette('mapquest_coordinate_request_full_spec') do
+      VCR.use_cassette('open_weather_request_full_spec') do
+        get '/api/v1/forecast?location=washington,dc'
+
+        result = JSON.parse(response.body, symbolize_names: true)
+
+        expect(result).to have_key(:data)
+        expect(result[:data]).to have_key(:attributes)
+        expect(result[:data][:attributes]).to have_key(:current_weather)
+
+        expect(result[:data][:attributes][:current_weather]).to_not have_key(:pressure)
+        expect(result[:data][:attributes][:current_weather]).to_not have_key(:pressure)
+        expect(result[:data][:attributes][:current_weather]).to_not have_key(:pressure)
+        expect(result[:data][:attributes][:current_weather]).to_not have_key(:pressure)
+        expect(result[:data][:attributes][:current_weather]).to_not have_key(:wind_speec)
+        expect(result[:data][:attributes][:current_weather]).to_not have_key(:wind_gust)
+
+        expect(result[:data][:attributes]).to have_key(:hourly_weather)
+
+        result[:data][:attributes][:hourly_weather].each do |hour|
+          expect(hour).to_not have_key(:feels_like)
+          expect(hour).to_not have_key(:pressure)
+          expect(hour).to_not have_key(:humidity)
+          expect(hour).to_not have_key(:dew_point)
+          expect(hour).to_not have_key(:uvi)
+          expect(hour).to_not have_key(:clouds)
+          expect(hour).to_not have_key(:visibility)
+        end
+
+        expect(result[:data][:attributes]).to have_key(:daily_weather)
+
+        result[:data][:attributes][:daily_weather].each do |day|
+          expect(day).to_not have_key(:feels_like)
+          expect(day).to_not have_key(:humidity)
+          expect(day).to_not have_key(:dew_point)
+          expect(day).to_not have_key(:wind_speed)
+          expect(day).to_not have_key(:wind_deg)
+          expect(day).to_not have_key(:clouds)
+          expect(day).to_not have_key(:pop)
+          expect(day).to_not have_key(:uvi)
+        end
+      end
+    end
+  end
 end
