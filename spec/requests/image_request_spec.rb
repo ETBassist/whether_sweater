@@ -21,5 +21,9 @@ describe 'Image Endpoint Search' do
     expect(result[:data][:attributes]).to be_a(Hash)
     expect(result[:data][:attributes]).to have_key(:author)
     expect(result[:data][:attributes][:author]).to be_a(String)
+    expect(result[:data][:attributes]).to have_key(:source)
+    expect(result[:data][:attributes][:source]).to be_a(String)
+    expect(result[:data][:attributes]).to have_key(:author_profile)
+    expect(result[:data][:attributes][:author_profile]).to be_a(String)
   end
 end

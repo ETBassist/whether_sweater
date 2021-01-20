@@ -10,5 +10,7 @@ describe 'Image PORO' do
     expect(image.image_url).to eq(parsed_response[:urls][:raw])
     expect(image.description).to eq(parsed_response[:description])
     expect(image.author).to eq(parsed_response[:user][:name])
+    expect(image.source).to eq('Unsplash')
+    expect(image.author_profile).to eq(parsed_response[:user][:links][:html])
   end
 end
