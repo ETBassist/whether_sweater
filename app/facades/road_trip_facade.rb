@@ -1,11 +1,10 @@
 class RoadTripFacade
   class << self
     def create_road_trip(params_body) 
-      coords = CoordinatesFacade.create_coordinates(params_body[:destination])
-      time = TimeFacade.query_direction_time_data(params_body[:origin], params_body[:destination])
-      weather = OpenWeatherService.get_forecast(coords[:lat], coords[:lng])
+      time_space = TimeSpaceFacade.query_direction_time_data(params_body[:origin], params_body[:destination])
+      weather = OpenWeatherService.get_forecast(time_space.lat, time_space.lng)
 
-      RoadTrip.new(params_body, time, weather)
+      RoadTrip.new(params_body, time_space, weather)
     end
   end
 end
