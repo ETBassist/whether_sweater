@@ -46,4 +46,25 @@ describe 'User Registration Endpoint' do
 
     expect(response.body).to eq("Password confirmation doesn't match Password")
   end
+
+  it 'will respond with an error if there is already a user with an email' do
+    create(:user, email: 'somebody@example.com')
+
+    body_data = { 
+      email: "somebody@example.com",
+      password: "password",
+      password_confirmation: "password"
+    }
+
+    headers = {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    }
+
+    post '/api/v1/users', headers: headers, params: JSON.generate(body_data)
+
+    expect(response.status).to eq(400)
+
+    expect(response.body).to eq('Email has already been taken')
+  end
 end
