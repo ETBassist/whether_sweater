@@ -33,6 +33,13 @@ Getting started:
   * Run `bundle install` from the command line to install dependencies
   * Run `rails db:{create,migrate}` to create the database and run the tables
     within it.
+  * Also in the terminal directory for this project run `bundle exec figaro
+    install`; this should create a file in the `config` directory called
+    `application.yml`. In this file you will need to put the API keys from the
+    APIs above.
+      * MAPQUEST_KEY: <YOUR KEY HERE>
+      * OPEN_WEATHER_KEY: <YOUR KEY HERE>
+      * UNSPLASH_KEY: <YOUR KEY HERE>
   * Run `rails s` within your terminal; you should now be able to hit the
     endpoint in this API, either through a program like Postman or through an
     app of your creation.
