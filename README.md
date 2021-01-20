@@ -29,6 +29,8 @@ Getting started:
 ## Endpoints
 With your `rails s` running locally all of these endpoints should be prefaced
 with `localhost:3000` (the default port for the rails server)
+
+#### Background image endpoint
 ```
 GET /api/v1/forecast?location=<city><state>
 Headers:
@@ -38,8 +40,7 @@ Headers:
 
 Note: `location` is a required parameter
 <details>
-  <pre>
-    <code>
+<pre><code>
 {
     "data": {
         "id": null,
@@ -173,15 +174,134 @@ Note: `location` is a required parameter
         }
     }
 }
-    </code>
-  </pre>
+</code></pre>
 </details
 
-```
+#### Background Image For a City
+<pre><code>
 GET /api/v1/backgrounds?location=<city><state>
 Headers:
   Content-Type: application/json
   Accept: application/json
-```
+</code></pre>
 
 Note: `location` is a required parameter
+<details>
+<pre><code
+{
+    "data": {
+        "id": null,
+        "type": "image",
+        "attributes": {
+            "image_url": "https://images.unsplash.com/photo-1579852915565-3e7ca937ade9?ixid=MXwxOTkxNzB8MHwxfHNlYXJjaHwxfHxjaXR5JTIwb2YlMjBzYW4lMjBmcmFuY2lzY28sY2F8ZW58MHx8fA&ixlib=rb-1.2.1",
+            "description": "Cluster.\n\nMy favorite *discovered* spot in my new city.\n\n4 stack hdr.",
+            "author": "Corbin Bell",
+            "source": "Unsplash",
+            "author_profile": "https://unsplash.com/@pixelactivist"
+        }
+    }
+}
+</code></pre>
+</details>
+
+#### User Registration
+
+```
+POST /api/v1/users
+Headers:
+  Content-Type: application/json
+  Accept: application/json
+
+Body:
+{
+  "email": "somebody@example.com",
+  "password": "password",
+  "password_confirmation": "password"
+}
+```
+
+Note: Information must be sent as JSON in the body of the request\
+Response:
+<details>
+<pre><code>
+{
+    "data": {
+        "id": "2",
+        "type": "users",
+        "attributes": {
+            "email": "sombody@example.com",
+            "api_key": "tWYm3t4k4PtpgbppAvEUAxGk"
+        }
+    }
+}
+</code></pre>
+</details>
+API Keys are generated via Rails built-in `has_secure_token` method
+
+#### User Login
+```
+POST /api/v1/sessions
+Headers:
+  Content-Type: application/json
+  Accept: application/json
+
+Body:
+{
+  "email": "somebody@example.com",
+  "password": "password",
+}
+```
+
+Note: Information must be sent as JSON in the body of the request\
+Response:
+<details>
+<pre><code>
+{
+    "data": {
+        "id": "2",
+        "type": "users",
+        "attributes": {
+            "email": "sombody@example.com",
+            "api_key": "tWYm3t4k4PtpgbppAvEUAxGk"
+        }
+    }
+}
+</code></pre>
+</details>
+
+#### Road Trip
+
+```
+POST /api/v1/road_trip
+Headers:
+  Content-Type: application/json
+  Accept: application/json
+
+Body:
+{
+  "origin": "Denver,CO",
+  "destination": "Pueblo,CO",
+  "api_key": "tWYm3t4k4PtpgbppAvEUAxGk"
+}
+```
+
+Response:
+<details>
+<pre><code>
+{
+    "data": {
+        "id": null,
+        "type": "roadtrip",
+        "attributes": {
+            "start_city": "Denver,CO",
+            "end_city": "Pueblo,CO",
+            "travel_time": "1h48m",
+            "weather_at_eta": {
+                "temperature": 26.29,
+                "conditions": "clear sky"
+            }
+        }
+    }
+}
+</code></pre>
+</details>
