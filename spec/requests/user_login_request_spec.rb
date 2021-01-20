@@ -16,7 +16,7 @@ describe 'User Log In request' do
       'Content-Type': 'application/json'
     }
 
-    post '/api/v1/session', headers: headers, params: JSON.generate(body_data)
+    post '/api/v1/sessions', headers: headers, params: JSON.generate(body_data)
 
     result = JSON.parse(response.body, symbolize_names: true)
 
@@ -39,7 +39,7 @@ describe 'User Log In request' do
       password: @user.password
     }
 
-    post '/api/v1/session', params: body_data
+    post '/api/v1/sessions', params: body_data
 
     result = JSON.parse(response.body, symbolize_names: true)
 
@@ -62,7 +62,7 @@ describe 'User Log In request' do
       password: 'the wrong password'
     }
 
-    post '/api/v1/session', params: body_data
+    post '/api/v1/sessions', params: body_data
 
     expect(response.status).to eq(400)
 
@@ -75,7 +75,7 @@ describe 'User Log In request' do
       password: @user.password
     }
 
-    post '/api/v1/session', params: body_data
+    post '/api/v1/sessions', params: body_data
 
     expect(response.status).to eq(400)
 
