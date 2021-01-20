@@ -187,7 +187,7 @@ Headers:
 
 Note: `location` is a required parameter
 <details>
-<pre><code
+<pre><code>
 {
     "data": {
         "id": null,
