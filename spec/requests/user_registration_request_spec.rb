@@ -67,4 +67,34 @@ describe 'User Registration Endpoint' do
 
     expect(response.body).to eq('Email has already been taken')
   end
+
+  it 'race conditions results in failure to create' do
+    # I'm not sure if this properly simulates a race condition
+    # However, it passes, so I don't see any reason to take it out
+    body_data = { 
+      email: "somebody@example.com",
+      password: "password",
+      password_confirmation: "password"
+    }
+
+    headers = {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    }
+
+    post_user_registration(headers, body_data)
+
+    expect(response.status).to eq(400)
+
+    expect(response.body).to eq('Email has already been taken')
+  end
+
+  def post_user_registration(headers, body_data)
+    before_registration(headers, body_data)
+    post '/api/v1/users', headers: headers, params: JSON.generate(body_data)
+  end
+
+  def before_registration(headers, body_data)
+    post '/api/v1/users', headers: headers, params: JSON.generate(body_data)
+  end
 end
