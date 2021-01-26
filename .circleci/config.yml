@@ -1,0 +1,14 @@
+---
+version: 2
+jobs:
+  build:
+    working_directory: ~/whether_sweater
+    docker:
+      - image: circleci/ruby:2.5.3
+      environment:
+        RAILS_ENV: test
+  steps:
+    - checkout
+    - run: bundle install
+    - run: bundle exec rails db:{create,schema:load}
+    - run: bundle exec rspec
