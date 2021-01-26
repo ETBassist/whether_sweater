@@ -9,11 +9,11 @@ jobs:
           PGHOST: localhost
           PGUSER: whether_sweater
           RAILS_ENV: test
-      - image: postgres:12.4
-        environment:
-          POSTGRES_USER: whether_sweater
-          POSTGRES_DB: whether_sweater_test
-          POSTGRES_PASSWORD: ""
+          # - image: postgres:12.4
+          #   environment:
+          #     POSTGRES_USER: whether_sweater
+          #     POSTGRES_DB: whether_sweater_test
+          #     POSTGRES_PASSWORD: ""
     steps:
       - checkout
 
@@ -33,10 +33,10 @@ jobs:
           - vendor/bundle
 
       # Wait for DB
-      - run: dockerize -wait tcp://localhost:5432 -timeout 1m
+      - run: dockerize -wait tcp://localhost:3000 -timeout 1m
 
       # Setup the environment
-      - run: cp .sample.env .env
+      #- run: cp .sample.env .env
 
       # Setup the database
       - run: bundle exec rake db:{create,schema:load}
