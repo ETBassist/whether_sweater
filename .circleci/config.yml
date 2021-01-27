@@ -6,14 +6,14 @@ jobs:
     docker:
       - image: circleci/ruby:2.5.3
         environment:
-          PGHOST: localhost
+          PGHOST: 127.0.0.1
           PGUSER: whether_sweater
           RAILS_ENV: test
-          # - image: postgres:12.4
-          #   environment:
-          #     POSTGRES_USER: whether_sweater
-          #     POSTGRES_DB: whether_sweater_test
-          #     POSTGRES_PASSWORD: ""
+          DATABASE_URL: postgres://whether_sweater@127.0.0.1/whether_sweater_test
+      - image: circleci/postgres:12.4
+          environment:
+            POSTGRES_USER: whether_sweater
+            POSTGRES_DB: whether_sweater_test
     steps:
       - checkout
 
@@ -41,7 +41,7 @@ jobs:
           - vendor/bundle
 
       # Wait for DB
-      - run: dockerize -wait tcp://localhost:5432 -timeout 1m
+      #- run: dockerize -wait tcp://localhost:5432 -timeout 1m
 
       # Setup the environment
       #- run: cp .sample.env .env
