@@ -47,9 +47,11 @@ jobs:
 
       # Setup the environment
       #- run: cp .sample.env .env
+      # create role whether_sweater
+      - run: psql -c 'create role whether_sweater with superuser;' -U postgres
 
       # Setup the database
-      - run: bundle exec rake db:{create,schema:load}
+      - run: bundle exec rake db:{create,schema:load} RAILS_ENV=test
 
       # Run the tests
       - run: bundle exec rspec
