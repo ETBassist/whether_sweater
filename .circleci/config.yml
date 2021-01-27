@@ -9,14 +9,15 @@ jobs:
           PGHOST: localhost
           PGUSER: whether_sweater
           RAILS_ENV: test
-          TZ: "Pacific Time (US & Canada)"
+          TZ: "America/Los_Angeles"
       - image: postgres:12.4
         environment: 
           POSTGRES_HOST_AUTH_METHOD: trust
           POSTGRES_USER: whether_sweater
           POSTGRES_DB: whether_sweater_test
-      environment: 
-        TZ: "Pacific Time (US & Canada)"
+          TZ: "America/Los_Angeles"
+    environment:
+      TZ: "America/Los_Angeles"
 
     steps:
       - checkout
