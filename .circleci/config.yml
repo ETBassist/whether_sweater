@@ -7,13 +7,13 @@ jobs:
       - image: circleci/ruby:2.5.3
         environment:
           PGHOST: 127.0.0.1
-          #PGUSER: whether_sweater
+          PGUSER: whether_sweater_test
           RAILS_ENV: test
           DATABASE_URL: postgres://whether_sweater@127.0.0.1/whether_sweater_test
       - image: postgres:12.4
         environment: 
           POSTGRES_HOST_AUTH_METHOD: trust
-          #POSTGRES_USER: whether_sweater
+        POSTGRES_USER: whether_sweater_test
         POSTGRES_DB: whether_sweater_test
 
     steps:
