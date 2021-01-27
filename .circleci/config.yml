@@ -10,10 +10,8 @@ jobs:
           PGUSER: whether_sweater
           RAILS_ENV: test
           DATABASE_URL: postgres://whether_sweater@127.0.0.1/whether_sweater_test
-      - image: circleci/postgres:12.4
-          environment:
-            POSTGRES_USER: whether_sweater
-            POSTGRES_DB: whether_sweater_test
+      - image: postgres:12.4
+
     steps:
       - checkout
 
