@@ -6,15 +6,14 @@ jobs:
     docker:
       - image: circleci/ruby:2.5.3
         environment:
-          PGHOST: 127.0.0.1
-          PGUSER: postgres
+          PGHOST: localhost
+          PGUSER: whether_sweater
           RAILS_ENV: test
-          DATABASE_URL: postgres://whether_sweater@127.0.0.1/whether_sweater_test
-      - image: circleci/postgres:12.4
+      - image: postgres:12.4
         environment: 
           POSTGRES_HOST_AUTH_METHOD: trust
-        POSTGRES_USER: postgres
-        POSTGRES_DB: whether_sweater_test
+          POSTGRES_USER: whether_sweater
+          POSTGRES_DB: whether_sweater_test
 
     steps:
       - checkout
@@ -49,7 +48,7 @@ jobs:
       #- run: cp .sample.env .env
 
       # Setup the database
-      - run: bundle exec rake db:{create,schema:load} RAILS_ENV=test
+      - run: bundle exec rake db:{create,schema:load}
 
       # Run the tests
       - run: bundle exec rspec
