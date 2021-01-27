@@ -11,6 +11,8 @@ jobs:
           RAILS_ENV: test
           DATABASE_URL: postgres://whether_sweater@127.0.0.1/whether_sweater_test
       - image: postgres:12.4
+        environment: 
+          POSTGRES_HOST_AUTH_METHOD: trust
         POSTGRES_USER: whether_sweater
         POSTGRES_DB: whether_sweater_test
 
