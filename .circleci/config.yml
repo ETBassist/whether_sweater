@@ -1,0 +1,58 @@
+---
+version: 2
+jobs:
+  build:
+    working_directory: ~/whether_sweater
+    docker:
+      - image: circleci/ruby:2.5.3
+        environment:
+          PGHOST: localhost
+          PGUSER: whether_sweater
+          RAILS_ENV: test
+          TZ: "America/Los_Angeles"
+      - image: postgres:12.4
+        environment: 
+          POSTGRES_HOST_AUTH_METHOD: trust
+          POSTGRES_USER: whether_sweater
+          POSTGRES_DB: whether_sweater_test
+          TZ: "America/Los_Angeles"
+    environment:
+      TZ: "America/Los_Angeles"
+
+    steps:
+      - checkout
+
+      # Restore Cached Dependencies
+      - type: cache-restore
+        name: Restore bundle cache
+        key: whether_sweater-{{ checksum "Gemfile.lock" }}
+
+      - run:
+          name: Force Bundler Version
+          command: |
+            sudo gem update --system
+            echo 'export BUNDLER_VERSION=$(cat Gemfile.lock | tail -1 | tr -d " ")' >> $BASH_ENV
+            source $BASH_ENV
+            gem install bundler
+
+      # Bundle install dependencies
+      - run: bundle install --path vendor/bundle
+
+      # Cache Dependencies
+      - type: cache-save
+        name: Store bundle cache
+        key: whether_sweater-{{ checksum "Gemfile.lock" }}
+        paths:
+          - vendor/bundle
+
+      # Wait for DB
+      #- run: dockerize -wait tcp://localhost:5432 -timeout 1m
+
+      # Setup the environment
+      #- run: cp .sample.env .env
+
+      # Setup the database
+      - run: bundle exec rake db:{create,schema:load}
+
+      # Run the tests
+      - run: bundle exec rspec
